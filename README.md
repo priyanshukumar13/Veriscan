@@ -1,35 +1,97 @@
-# VeriScan: File Safety Scanner
-VeriScan is a simple file scanning tool built with Flask that scans files on a user's system to identify potentially harmful ones based on characteristics like file extension, name patterns, and known malware hashes. It helps users determine whether files are "safe" or "unsafe" to open or delete.
+# Veriscan 🚀
 
-![home](https://github.com/user-attachments/assets/cf3f23aa-641a-4eb0-89cb-94e80bd48858)
+## 🔐 Password Strength Checker API
 
-# Features
-- Scans files based on file extensions, size, name (e.g., .exe, .dll, .bat, .vbs).
-- Checks file hashes against a list of known malicious hashes.
-- Provides a "clean" or "suspicious" status with a message for each file.
-- A simple web interface for users to upload files and receive scan results.
+This project implements a **Password Strength Checker** using **Python** and **AWS Lambda**. The API evaluates password security based on:
 
-# Requirements
-- Python 3.x
-- Flask
-- hashlib
+- ✅ **Presence of uppercase, lowercase, numbers, and special characters.**
+- ✅ **Checks for personal information** (first/last name) in the password.  
+- ✅ **Validates password length** to ensure security.  
+- ✅ **Detects common passwords** using a predefined list.  
+- ✅ **Provides a score & feedback** (🔴 Weak, 🟠 Fine, 🟡 Good, 🟢 Great). 
 
-To install the necessary Python dependencies, you can use:
-pip install -r requirements.txt
+## 📌 Features
 
-# How It Works
-- Suspicious File Extensions: The tool flags files with extensions commonly associated with malicious files (e.g., .exe, .dll, .bat).
-- Hash Checking: It compares the file's SHA256 hash against a list of known malicious hashes.
-- Response: If a suspicious extension or a known malicious hash is detected, the file is labeled as "suspicious" and flagged as "unsafe". Otherwise, the file is deemed "safe".
+- 🛡 **Checks for inclusion of personal information** (first/last name) in passwords.
+- 🔍 **Validates password length** to ensure better security.
+- 📋 **Uses a predefined list (`common.txt`)** to detect commonly used passwords.
+- 📊 **Provides feedback based on a scoring system:**  
+  - 🔴 **Very Weak:** Use a mix of uppercase, lowercase, numbers, and symbols.  
+  - 🟠 **Weak:** Consider making your password longer and adding special characters.  
+  - 🟡 **Fair:** Adding numbers or uncommon words can improve security.  
+  - 🟢 **Strong:** Your password is quite strong, but avoid common words.  
+  - ✅ **Very Strong:** Your password is highly secure!  
 
-# Future Improvements
-While VeriScan is designed to detect suspicious files based on known patterns, we plan to enhance the tool in future releases. Upcoming features will include real-time file scanning, cloud-based malware database integration, and more extensive file analysis tools.
+---
 
-# Contributing
-We welcome contributions from developers and security enthusiasts. If you have ideas for improvements or want to contribute to VeriScan, feel free to open issues or submit pull requests on GitHub. Please follow the guidelines in the contributing section for submitting code.
+## 🛠 Setup Instructions
 
-# Get Involved
-Join the community of developers and cybersecurity experts in improving VerScan and expanding its capabilities. Whether you’re looking to enhance the tool's features, report bugs, or help with documentation, your contributions are always welcome!
+### 🚀 AWS Lambda Setup
 
-# Contact
-For any questions, suggestions, or feedback, feel free to reach out to us via email or open an issue on GitHub. We’d love to hear from you!
+To deploy the function as an AWS Lambda service:
+
+1. **Create a Lambda Function:**
+   - Go to the **AWS Lambda Console**.
+   - Click **Create Function**.
+   - Choose **Author from scratch**.
+   - Set the function name to `password-strength-checker`.
+   - Select **Python 3.x** as the runtime environment.
+   - Choose **Create a new role with basic Lambda permissions**.
+   - Click **Create Function**.
+
+2. **Deploy Code to Lambda:**
+   - In the **Lambda function code editor**, replace the default code.
+   - Upload the `common.txt` file via the **Upload button** or include it in a deployment package.
+   - Click **Deploy** to save the function.
+
+3. **Set Environment Variables (Optional but Recommended):**
+   - Store values like the `common.txt` path in environment variables.
+   - Go to **Configuration > Environment Variables** and add key-value pairs.
+
+### 🌐 API Gateway Setup (Expose as a REST API)
+
+1. **Create an API:**
+   - Go to **API Gateway Console**.
+   - Click **Create API** and select **REST API**.
+   - Configure **API name, description, and endpoint type**.
+
+2. **Integrate API with Lambda:**
+   - In the **Resources** tab, click **Actions > Create Method** and choose **POST**.
+   - Select **Lambda Function** as the integration type.
+   - Specify your Lambda function (`password-strength-checker`) and save.
+
+3. **Enable CORS (Optional):**
+   - Select **POST method** > **Actions > Enable CORS**.
+   - This allows API access from a web browser.
+
+4. **Deploy API:**
+   - Go to **Stages > Create Stage** (e.g., `prod`).
+   - Deploy the API by selecting **Deploy API**.
+   - Note the **Invoke URL** (your API endpoint for requests).
+
+---
+
+## 🖥 Local Development
+
+If you want to run the password strength checker **locally**:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/priyanshukumar13/Veriscan.git
+   cd PasswordChecker
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run the function:
+   - Call `check_password_strength()` directly in Python.
+   - Or integrate it with a local API testing framework like **Flask**.
+
+⚠ **Security Tip:** Avoid exposing your actual API URL publicly. Use **environment variables** or placeholders instead.
+
+---
+
+📌 **Now you're all set!** Enjoy using **Veriscan** for better password security! 🔐🚀
