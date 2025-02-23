@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VeriScan - File Scanner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+     <link rel="stylesheet" href="/static/style.css">
+    <!-- <link rel="stylesheet" href="/static/style.css"> -->
+    <link rel="icon" href="/static/images/logoverc.png" type="image/png" />
+
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header class="nav" id="nav">
+        <div>
+          <!-- <img src="{{ url_for('static', filename='/static/images/logo.png') }}" alt="" class="nav__logo" /> -->
+          <img src="/static/images/logo.png" alt="" class="nav__logo" />
+        </div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#what">What we do</a>
+          <a href="#">File Checker</a>
+          <a href="./newindex.html">Password Checker</a>
+          <a href="#foot">Contact us</a>
+        </div>
+        <div>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+            alt=""
+            class="nav__avatar"
+          />
+        </div>
+        <div class="hamburger-menu" id="hamburger-menu">
+          <i class="fas fa-bars"></i>
+        </div>
+      </header>
+
+<script>
+    document.getElementById('hamburger-menu').addEventListener('click', function() {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.toggle('active');
+});
+
+</script>
+
+
+    <section class="scan">
+        <div class="container">
+            <h1>Is this file <span class="safe">safe?</span></h1>
+            <p>Scan your file for malware and viruses.</p>
+
+            <form id="file-upload-form" enctype="multipart/form-data">
+                <label for="file-upload" class="drop-area">
+                    <input type="file" id="file-upload" name="file" accept="*/*" />
+                    <span>Drag and drop a file or click to browse</span>
+                </label>
+                <button id="what" type="submit">Upload & Scan</button>
+            </form>
+
+            <div id="result"></div>
+            <div class="terms">
+            <p >By adding the file you agree to our <span style="color: blue;">terms of service</span> and <span style="color: blue;">privacy policy.</span></p>
+            <p>Recommended maximum file size is up to 50MB.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const form = document.getElementById('file-upload-form');
+        const fileInput = document.getElementById('file-upload');
+        const statusElement = document.getElementById('result');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            // Change text color based on file status
+            if (result.status === 'suspicious') {
+                statusElement.style.color = 'red';
+            } else {
+                statusElement.style.color = 'green';
+            }
+            statusElement.textContent = result.message;  // Display the result message
+        });
+    </script>
+
+    <section class="what">
+      <div class="toptext">
+        <h1>What does File Checker do?</h1>
+        <p>File Checker is a tool for verifying whether any given image or document is harboring known malware strains.</p>
+      </div>
+
+      <div class="whatimage">
+        <div>
+
+          <img src="https://ic.nordcdn.com/v1/https://sb.nordcdn.com/m/479f345197c46f06/original/file-checker-documents-folders-scan-md.svg" class="whatimg" alt="">
+        </div>
+        <div class="whatimagetxt">
+          <h1>Check attachments for phishing</h1>
+          <p>You can get viruses by opening infected attachments to phishing emails — so don’t. You can download the file without opening it and scan it with File Checker to see if it's secretly harboring malware.</p>
+          <h1>Scan downloads before opening</h1>
+          <p>Even files you download from seemingly-legitimate online repositories can be infected. Use the free File Checker tool to upload a hash of the file to our servers and scan it for hidden malware.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="why-choose" id="why">
+      <div class="center-text">
+        <h1>Why should you choose Our<br>file checker?</h1>
+      </div>
+      <div class="content">
+        <div class="left-text">
+          <div class="dropdown">
+            <h2 class="dropdown-header">Works on all platforms&nbsp;</h2>
+            <p class="dropdown-content">
+              It doesn’t matter if you’re on your phone, your tablet, or your laptop — as long as you’ve got access to a browser, you can use our free File Checker tool to scan any supported file.
+            </p>
+          </div>
+          <div class="dropdown">
+            <h2 class="dropdown-header">Designed by experts&nbsp;</h2>
+            <p class="dropdown-content">
+              File Checker was developed by NordVPN, a global leader in cybersecurity with over 10 years of experience. Our experts curate a massive real-time database of threats and use advanced technologies, including artificial intelligence and machine learning, to continuously improve File Checker.
+            </p>
+          </div>
+          <div class="dropdown">
+            <h2 class="dropdown-header">Completely free to use&nbsp;</h2>
+            <p class="dropdown-content">
+              No need to log in, no need to subscribe — put simply, if you’re unsure about a file, you can always use File Checker to scan it for free.
+            </p>
+          </div>
+        </div>
+        <div class="right-image">
+          <div class="circle-image">
+            <!-- <img src="{{ url_for('static', filename='\images\safe-documents-files-check-laptop-md.avif') }}" alt="" /> -->
+            <img src="/static/images/safe-documents-files-check-laptop-md.avif" alt="" />
+
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+
+    <script>
+      document.querySelectorAll('.dropdown-header').forEach((header, index) => {
+    if (index === 0) {
+        header.classList.add('open');
+        header.nextElementSibling.classList.add('open');
+    }
+
+    header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+
+        document.querySelectorAll('.dropdown-content.open').forEach(openContent => {
+            openContent.classList.remove('open');
+            openContent.previousElementSibling.classList.remove('open');
+        });
+
+        if (!isOpen) {
+            header.classList.add('open');
+            content.classList.add('open');
+        }
+    });
+});
+
+
+    </script>
+    
+
+    
+
+
+
+    <footer id="foot">
+    <section class="link">
+      <div class="logos">
+        <a href="#"><i class="fab fa-instagram fa-2x logo"></i></a>
+        <a href="#"><i class="fab fa-twitter fa-2x logo"></i></a>
+        <a href="#"><i class="fab fa-youtube fa-2x logo"></i></a>
+      </div>
+      <hr style="opacity: 50%; margin: 0 100px 0 100px;">
+      <div class="sub-links">
+        <ul>
+          <li><a href="#"><strong>VeriScan</strong></a></li>
+          <li><a href="#">What we do </a></li>
+          <li><a href="#">Why us</a></li>
+          <li><a href="#"><Strong>Help</Strong></a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Investor Relations</a></li>
+          <li><a href="#">Jobs</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Legal Notices</a></li>
+          <li><a href="#">Corporate Information</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact us</a></li>
+
+        </ul>
+        <p>&copy 2024-2024 VERISCAN, Inc. CodeHub &copy 2024</p>
+      </div>
+      
+    </section>
+    
+      
+    </footer>
+
+
+    <script>
+      document.getElementById("file-upload-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          const formData = new FormData();
+          const fileInput = document.getElementById("file-upload");
+          const file = fileInput.files[0];
+          formData.append("file", file);
+
+          fetch("/upload", {
+              method: "POST",
+              body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById("result").innerHTML = `<strong>${data.message}</strong>`;
+          })
+          .catch(error => {
+              console.error(error);
+              document.getElementById("result").innerHTML = `<strong>Error during file upload</strong>`;
+          });
+      });
+
+      window.addEventListener('scroll', function() {
+          const navbar = document.querySelector('.navbar');
+          if (window.scrollY > 0) {
+              navbar.classList.add('scrolled');
+          } else {
+              navbar.classList.remove('scrolled');
+          }
+      });
+  </script>
+
+    <script>
+      const nav = document.getElementById("nav");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY >= 100) {
+          nav.classList.add("nav__black");
+        } else {
+          nav.classList.remove("nav__black");
+        }
+      });
+    </script>
+  </body>
+</html>

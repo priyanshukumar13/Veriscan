@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        header img {
+            max-height: 50px;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 2em;
+            margin: 0;
+        }
+
+        h2 {
+            font-weight: 500;
+            font-size: 1.5em;
+            margin-top: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        p {
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .contact-info {
+            font-size: 0.9em;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+            color: #555;
+        }
+
+        .highlight-heading {
+            color: #007BFF;
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+
+        .highlight-content {
+            background-color: #E0F7FA;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Company Logo">
+        </header>
+
+        <div class="title-section">
+            <h1>Terms and Conditions</h1>
+        </div>
+
+        <h2>Introduction</h2>
+        <p>Your use of NordLab Services is subject to the General Terms and these Additional Terms. In case of conflicts, the Additional Terms prevail.</p>
+
+        <h2>NordLabs Services</h2>
+        <p>NordLabs offers free experimental features under development. Users acknowledge the beta nature of these services, which may include bugs or instability.</p>
+
+        <h2>Your Content and Conduct</h2>
+        <p>By using NordLabs Services, you agree to avoid any illegal, fraudulent, or prohibited actions and comply with applicable laws. Violations may result in suspension or termination.</p>
+
+        <h2>Feedback</h2>
+        <p>We value your feedback to improve NordLabs Services. Please report any issues you encounter for further refinement.</p>
+
+        <h2>AI Tools Disclaimer</h2>
+        <p>AI tools like Phishing Assistant, Link Checker, and File Checker provide guidance but may produce false positives. Exercise caution and discretion when relying on these tools.</p>
+
+        <h2>Beta Disclaimer</h2>
+        <p>NordLabs Services are provided "as is" without warranties. Nord disclaims liability for any damages resulting from their use.</p>
+
+        <h2>Contact Information</h2>
+        <ul>
+            <li>Email for abuse allegations: <a href="mailto:labs@nordvpn.com">labs@nordvpn.com</a></li>
+            <li>Digital Services Act (DSA) contact: <a href="mailto:dsa@nordvpn.com">dsa@nordvpn.com</a></li>
+            <li>Legal Representative: NordSec B.V., Fred. Roeskestraat 115, 1076 EE Amsterdam, The Netherlands</li>
+        </ul>
+
+        <div class="contact-info">
+            <p>For further questions, email: <a href="mailto:labs@nordvpn.com">labs@nordvpn.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('mouseover', function (e) {
+            if (e.target.tagName.toLowerCase() === 'h2') {
+                e.target.classList.add('highlight-heading');
+                e.target.nextElementSibling?.classList.add('highlight-content');
+            }
+            if (e.target.tagName.toLowerCase() === 'p') {
+                e.target.classList.add('highlight-content');
+            }
+        });
+        document.addEventListener('mouseout', function (e) {
+            if (e.target.tagName.toLowerCase() === 'h2') {
+                e.target.classList.remove('highlight-heading');
+                e.target.nextElementSibling?.classList.remove('highlight-content');
+            }
+
+            if (e.target.tagName.toLowerCase() === 'p') {
+                e.target.classList.remove('highlight-content');
+            }
+        });
+    </script>
+</body>
+</html>
